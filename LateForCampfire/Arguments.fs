@@ -1,4 +1,5 @@
 ﻿module Arguments
+// http://fsharpforfunandprofit.com/posts/pattern-matching-command-line/
 
 // set up a type to represent the options
 type CommandLineOptions = {

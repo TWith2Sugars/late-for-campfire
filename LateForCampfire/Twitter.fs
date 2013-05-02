@@ -8,7 +8,7 @@ type Tweet = { Text:string; User:string }
 
 let private path = "last-tweet-id.txt"
 
-let private fetchLastTweetId (twitterService : TwitterService) = 
+let private fetchLastTweetId = 
     if not (File.Exists path) then 
         None
     else
@@ -22,8 +22,7 @@ let private setLastTweetId (tweet:TwitterStatus) =
 
 let private getMentions (twitterService : TwitterService) = 
     let options = ListTweetsMentioningMeOptions()
-    let lastId = fetchLastTweetId twitterService
-    match lastId with
+    match fetchLastTweetId with
     | Some id -> options.SinceId <- Nullable<int64> id
     | None -> ()    
 

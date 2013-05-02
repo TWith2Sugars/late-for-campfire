@@ -21,7 +21,6 @@ let messageForCampfire notHere =
 
 [<EntryPoint>]
 let main args =
-   // Define what arguments are expected
     let arguments = Arguments.parseCommandLine (List.ofArray args)
 
     let campfire = Campfire.postMessage arguments.campfireRoom arguments.campfireApi
@@ -29,6 +28,5 @@ let main args =
     |> Seq.map whyAreTheyNotHere
     |> Seq.map messageForCampfire
     |> campfire
-
     
     0 // return an integer exit code
