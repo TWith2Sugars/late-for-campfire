@@ -5,18 +5,21 @@ open Arguments
 type NotHere = 
     | Late of Tweet
     | Ill of Tweet
+    | Home of Tweet
     | Other of Tweet
 
 let whyAreTheyNotHere (tweet:Tweet) = 
     match tweet.Text with
     | x when x.ToLowerInvariant().Contains("late") -> Late(tweet)
     | x when x.ToLowerInvariant().Contains("ill") -> Ill(tweet)
+    | x when x.ToLowerInvariant().Contains("home") -> Home(tweet)
     | x -> Other(tweet)
 
 let messageForCampfire notHere =
     match notHere with 
     | Late l -> l.User + " is running late"
     | Ill i -> "Poor " + i.User + " is ill and won't be in today :("
+    | Home h -> h.User + " is working from home today."
     | Other o -> o.User + " has messaged us; this is what they said: " + o.Text
 
 [<EntryPoint>]
@@ -29,4 +32,4 @@ let main args =
     |> Seq.map messageForCampfire
     |> campfire
     
-    0 // return an integer exit code
+    0
