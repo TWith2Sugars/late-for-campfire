@@ -41,7 +41,7 @@ let private getMessages (twitterService : TwitterService) =
         |> Seq.maxBy (fun x -> x.Id) 
         |> setLastTweetId
 
-    mentions
+    messages
 
 let private getRestrictedUsers (twitterService : TwitterService) user listName =
     let options = GetListOptions()
